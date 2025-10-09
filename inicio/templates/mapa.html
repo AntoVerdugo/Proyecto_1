@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<!-- ===== CONTENIDO ESPECÍFICO DE LA PÁGINA DEL MAPA ===== -->
+<div class="content-box">
+    <!-- Imagen del mapa -->
+    <img src="{% static 'map.png' %}" alt="Mapa Interactivo" width="80">
+    
+    <!-- Título principal de la página -->
+    <h1>Mapa Interactivo</h1>
+    
+    <!-- Descripción del mapa -->
+    <p>En este mapa interactivo encontrarás diversas ubicaciones de interés.</p>
+    <p>Puedes hacer clic en los marcadores para obtener más información sobre cada lugar.</p>
+
+    <!-- Texto de pie con información del creador -->
+    <p class="footer-text">Sitio Web creado por Antonia Verdugo</p>
+</div>
+{% endblock %}

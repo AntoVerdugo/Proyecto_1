@@ -1,0 +1,51 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Proyecto</title>
+    <!-- Cargamos el archivo CSS con los estilos principales -->
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+</head>
+<body>
+    
+<!-- ===== ENCABEZADO Y MENÚ DE NAVEGACIÓN ===== -->
+<header class="header">
+    <div class="container">
+        <!-- LOGO PRINCIPAL DEL SITIO -->
+        <h1 class="logo">Mi Proyecto</h1>
+        
+        <!-- MENÚ DE NAVEGACIÓN CON BOTONES SEPARADOS POR GUIONES -->
+        <nav class="navigation">
+            <!-- Botón de Inicio -->
+            <a href="{% url 'bienvenida' %}" class="nav-item">🏠 Inicio</a>
+            <!-- Separador visual entre botones -->
+            <span class="separator">-</span>
+            
+            <!-- Botón de Mapa Interactivo -->
+            <a href="{% url 'mapa' %}" class="nav-item">🗺️ Mapa</a>
+            <span class="separator">-</span>
+            
+            <!-- Botón de Tutores -->
+            <a href="{% url 'tutores' %}" class="nav-item">👨‍🏫 Tutores</a>
+            <span class="separator">-</span>
+            
+            <!-- Botón de Perfil de Usuario -->
+            <a href="{% url 'perfil' %}" class="nav-item">👤 Perfil</a>
+        </nav>
+    </div>
+</header>
+
+<!-- ===== CONTENIDO PRINCIPAL DE CADA PÁGINA ===== -->
+<main class="main">
+    <div class="container">
+        <!-- Aquí se insertará el contenido específico de cada página -->
+        {% block content %}
+        {% endblock %}
+    </div>
+</main>
+
+</body>
+</html>

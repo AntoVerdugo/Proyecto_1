@@ -1,0 +1,192 @@
+/* ===== RESET Y CONFIGURACIÓN GENERAL ===== */
+
+/* Reset básico para eliminar márgenes y paddings por defecto del navegador */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Hace que padding y border se incluyan en el width/height */
+}
+
+/* Estilos generales del cuerpo de la página */
+body {
+    background: #f8fafc;  /* Color de fondo gris muy claro */
+    color: #334155;       /* Color del texto gris oscuro */
+    font-family: 'Arial', sans-serif; /* Fuente principal */
+    line-height: 1.6;     /* Espaciado entre líneas para mejor legibilidad */
+    min-height: 100vh;    /* Altura mínima de toda la ventana */
+}
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+
+/* Contenedor que centra y limita el ancho del contenido */
+.container {
+    max-width: 1000px;    /* Ancho máximo en pantallas grandes */
+    margin: 0 auto;       /* Centra horizontalmente */
+    padding: 0 20px;      /* Espacio a los lados en móviles */
+}
+
+/* ===== ENCABEZADO Y LOGO ===== */
+
+.header {
+    background: #ffffff;      /* Fondo blanco para el header */
+    border-bottom: 2px solid #e2e8f0; /* Línea separadora gris claro */
+    padding: 20px 0;         /* Espacio arriba y abajo */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+}
+
+/* Estilos del título/logo principal */
+.logo {
+    color: #2563eb;     /* Color azul vibrante */
+    font-size: 2rem;    /* Tamaño grande para destacar */
+    text-align: center; /* Centrado horizontal */
+    margin-bottom: 15px; /* Espacio debajo del logo */
+    font-weight: bold;  /* Texto en negrita */
+}
+
+/* ===== MENÚ DE NAVEGACIÓN ===== */
+
+/* Contenedor de los botones de navegación */
+.navigation {
+    display: flex;           /* Diseño flexible para alinear en fila */
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center;     /* Centra verticalmente */
+    flex-wrap: wrap;        /* Permite que los botones bajen de línea en móviles */
+    gap: 5px;               /* Espacio entre botones y separadores */
+}
+
+/* Estilos de cada botón del menú */
+.nav-item {
+    color: #475569;           /* Color de texto gris medio */
+    text-decoration: none;    /* Quita el subrayado de los enlaces */
+    padding: 10px 20px;       /* Espacio interno: 10px arriba/abajo, 20px lados */
+    border: 2px solid #e2e8f0; /* Borde gris claro */
+    border-radius: 8px;       /* Esquinas redondeadas */
+    background: #ffffff;      /* Fondo blanco */
+    transition: all 0.3s ease; /* Transición suave para efectos hover */
+    font-weight: 500;         /* Grosor de fuente medio */
+}
+
+/* Efectos cuando el usuario pasa el mouse sobre un botón */
+.nav-item:hover {
+    background: #2563eb;  /* Fondo azul al hacer hover */
+    color: white;         /* Texto blanco para contraste */
+    border-color: #2563eb; /* Borde azul para coincidir */
+    transform: translateY(-2px); /* Efecto de elevación (se mueve 2px arriba) */
+}
+
+/* Estilos de los separadores entre botones (guiones) */
+.separator {
+    color: #cbd5e1;  /* Color gris claro para los guiones */
+    font-weight: bold; /* Texto en negrita */
+    padding: 0 5px;   /* Espacio a los lados del guión */
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+
+/* Área principal donde va el contenido de cada página */
+.main {
+    padding: 40px 0;  /* Espacio arriba y abajo del contenido */
+}
+
+/* ===== CAJAS DE CONTENIDO ===== */
+
+/* Estilo de las cajas que contienen el contenido de cada página */
+.content-box {
+    background: #ffffff;      /* Fondo blanco */
+    border: 2px solid #e2e8f0; /* Borde gris claro */
+    border-radius: 12px;     /* Esquinas más redondeadas */
+    padding: 40px;           /* Espacio interno generoso */
+    margin: 20px 0;          /* Espacio externo arriba y abajo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+}
+
+/* ===== TIPOGRAFÍA Y TEXTOS ===== */
+
+/* Estilos para los títulos principales (h1) */
+h1 {
+    color: #1e293b;        /* Color gris muy oscuro */
+    font-size: 2.2rem;     /* Tamaño grande para títulos */
+    text-align: center;    /* Centrado horizontal */
+    margin-bottom: 20px;   /* Espacio debajo del título */
+    font-weight: 600;      /* Texto semi-negrita */
+}
+
+/* Estilos para párrafos de texto normales */
+p {
+    color: #475569;        /* Color gris medio */
+    font-size: 1.1rem;     /* Tamaño ligeramente mayor para mejor lectura */
+    line-height: 1.7;      /* Espaciado entre líneas amplio */
+    text-align: center;    /* Texto centrado */
+    margin-bottom: 15px;   /* Espacio entre párrafos */
+}
+
+/* Estilos para imágenes dentro del contenido */
+.content-box img {
+    display: block;        /* Hace que la imagen sea un bloque */
+    margin: 0 auto 25px;   /* Centra y añade espacio abajo: 0 arriba, auto lados, 25px abajo */
+    border-radius: 8px;    /* Esquinas redondeadas en imágenes */
+    border: 2px solid #e2e8f0; /* Marco sutil alrededor de la imagen */
+}
+
+/* Estilos para texto de pie o créditos */
+.footer-text {
+    color: #64748b;        /* Color gris más claro */
+    font-size: 1rem;       /* Tamaño normal (ligeramente menor) */
+    margin-top: 30px;      /* Espacio grande arriba para separar */
+    padding-top: 20px;     /* Espacio interno arriba */
+    border-top: 1px solid #e2e8f0; /* Línea separadora sutil */
+}
+
+/* ===== DISEÑO RESPONSIVE - TABLETS ===== */
+
+/* Estilos que se aplican cuando la pantalla es menor a 768px (tablets) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;  /* Menos espacio a los lados */
+    }
+    
+    .logo {
+        font-size: 1.8rem; /* Logo ligeramente más pequeño */
+    }
+    
+    .navigation {
+        gap: 3px;         /* Menos espacio entre botones */
+    }
+    
+    .nav-item {
+        padding: 8px 15px; /* Botones más compactos */
+        font-size: 0.9rem; /* Texto más pequeño */
+    }
+    
+    .main {
+        padding: 20px 0;  /* Menos espacio alrededor del contenido */
+    }
+    
+    .content-box {
+        padding: 25px 20px; /* Menos espacio interno en las cajas */
+    }
+    
+    h1 {
+        font-size: 1.8rem; /* Títulos más pequeños */
+    }
+}
+
+/* ===== DISEÑO RESPONSIVE - MÓVILES ===== */
+
+/* Estilos que se aplican cuando la pantalla es menor a 480px (móviles pequeños) */
+@media (max-width: 480px) {
+    .navigation {
+        flex-direction: column; /* Botones en columna vertical */
+        gap: 10px;             /* Más espacio entre botones */
+    }
+    
+    /* En móviles quitamos los separadores (guiones) */
+    .separator {
+        display: none;         /* Oculta los guiones "-" */
+    }
+    
+    .nav-item {
+        width: 100%;          /* Botones ocupan todo el ancho */
+        text-align: center;   /* Texto centrado dentro del botón */
+    }
+}
