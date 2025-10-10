@@ -21,8 +21,8 @@ body {
 /* Contenedor que centra y limita el ancho del contenido */
 .container {
     max-width: 1000px;    /* Ancho máximo en pantallas grandes */
-    margin: 0 auto;       /* Centra horizontalmente */
-    padding: 0 20px;      /* Espacio a los lados en móviles */
+    margin: auto;       /* Centra horizontalmente */
+    padding: 20px;      /* Espacio a los lados en móviles */
 }
 
 /* ===== ENCABEZADO Y LOGO ===== */
@@ -52,6 +52,8 @@ body {
     align-items: center;     /* Centra verticalmente */
     flex-wrap: wrap;        /* Permite que los botones bajen de línea en móviles */
     gap: 5px;               /* Espacio entre botones y separadores */
+    margin: auto;       /* Centra horizontalmente */
+    
 }
 
 /* Estilos de cada botón del menú */
