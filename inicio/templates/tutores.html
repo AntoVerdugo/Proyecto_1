@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
-
 {% block content %}
 <div class="content-box">
     <h1>{{ t }}</h1>
     <p>Tutor asignado</p>
-    <p>Información sobre los tutor </p>
+    <p>Información sobre la asignación de tutoría o de estudiantes a tu cargo.</p>
+    
+    <div style="margin-top: 30px; padding: 20px; border: 2px solid #2563eb; border-radius: 8px; background: #eff6ff;">
+        <p style="font-size: 1.2rem; font-weight: 500; color: #1e293b;">
+            {{ info_asignacion|safe }} 
+        </p>
+    </div>
 </div>
 {% endblock %}

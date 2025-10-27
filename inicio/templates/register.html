@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content-box" style="max-width: 800px; margin: 20px auto; padding: 40px;">
+    
+    <h1>📝 Regístrate en Mi Proyecto</h1>
+    <p style="color: #475569; font-size: 1.1rem;">
+        Completa el formulario a continuación para unirte a nuestra plataforma de apoyo universitario.
+    </p>
+    
+    <form method="post" style="padding: 10px 0; text-align: left;">
+        {% csrf_token %}
+        
+        <div style="display: grid; 
+                    grid-template-columns: 1fr 1fr; 
+                    gap: 30px 20px; /* Más espacio entre filas y columnas */
+                    padding: 20px 0;">
+            
+            {% for field in formulario %}
+                
+                {% if field.name == 'password1' or field.name == 'password2' %}
+                    </div><div style="grid-column: 1 / -1; margin-bottom: 10px; padding-top: 15px; border-top: 1px solid #e2e8f0; text-align: left;">
+                    
+                    <h2 style="font-size: 1.3rem; margin-bottom: 15px; color: #2563eb;">🔑 Datos de Seguridad</h2>
+                {% else %}
+                    <div style="margin-bottom: 5px; text-align: left;">
+                {% endif %}
+                    
+                    <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
+                        {% if field.name == 'username' %}
+                            👤 Nombre de Usuario
+                        {% elif field.name == 'email' %}
+                            📧 Correo Electrónico
+                        {% elif field.name == 'first_name' %}
+                            ✨ Nombres
+                        {% elif field.name == 'last_name' %}
+                            surname Apellidos
+                        {% elif field.name == 'rol_universitario' %}
+                            🆔 Rol Universitario
+                        {% elif field.name == 'rol' %}
+                            🎓 Rol en el Proyecto
+                        {% elif field.name == 'nombre_social' %}
+                            💖 Nombre Social
+                        {% elif field.name == 'edad' %}
+                            🎂 Edad
+                        {% elif field.name == 'carrera' %}
+                            📚 Carrera
+                        {% elif field.name == 'año_estudio' %}
+                            📅 Año de Estudio
+                        {% else %}
+                            {{ field.label }}
+                        {% endif %}
+                        
+                        {% if field.field.required %} <span style="color: #ef4444;">*</span>{% endif %}
+                    </label>
+                    
+                    {{ field.as_widget }}
+                    
+                    {% if field.help_text %}
+                        <p style="color: #64748b; font-size: 0.85rem; margin-top: 5px; text-align: left; line-height: 1.3;">
+                            {% if field.name == 'username' %}
+                                Requerido. 150 caracteres o menos. Letras, dígitos y @/./+/-/_ solamente.
+                            {% elif field.name == 'rol_universitario' %}
+                                Tu número de identificación universitaria (ej: 12345678-9).
+                            {% elif field.name == 'password2' %}
+                                Para verificar, introduzca la misma contraseña anterior.
+                            {% else %}
+                                {{ field.help_text }} 
+                            {% endif %}
+                        </p>
+                    {% endif %}
+                    
+                    {% if field.name == 'password2' %}
+                        <p style="margin-top: 10px; margin-bottom: 5px; color: #1e293b; font-weight: 500;">🔒 Condiciones de Contraseña:</p>
+                        <ul style="list-style-type: none; padding-left: 0; font-size: 0.9rem; color: #475569; margin-top: 5px;">
+                            <li>• Su contraseña debe contener al menos 8 caracteres.</li>
+                            <li>• Su contraseña no puede ser solo numérica.</li>
+                        </ul>
+                    {% endif %}
+
+                    {% for error in field.errors %}
+                        <p style="color: #ef4444; font-size: 0.9rem; margin-top: 5px; text-align: left;">{{ error }}</p>
+                    {% endfor %}
+                </div>
+                {% if field.name == 'password2' and not forloop.last %}
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px 20px; padding: 20px 0;">
+                        <div style="grid-column: 1 / -1; margin-bottom: 10px; padding-top: 5px;">
+                             <h2 style="font-size: 1.3rem; color: #10b981;">📝 Datos de Perfil</h2>
+                        </div>
+                {% endif %}
+            {% endfor %}
+            
+        </div>
+        
+        <button type="submit" class="nav-item" style="width: 100%; margin-top: 30px; background: #10b981; color: white; border-color: #10b981; cursor: pointer; font-size: 1.2rem;">
+            Completar Registro
+        </button>
+        
+        <p class="footer-text" style="text-align: center; margin-top: 20px; border-top: none;">
+            ¿Ya tienes cuenta? <a href="{% url 'login' %}" style="color: #2563eb; text-decoration: none; font-weight: bold;">Inicia Sesión aquí.</a>
+        </p>
+    </form>
+</div>
+{% endblock %}

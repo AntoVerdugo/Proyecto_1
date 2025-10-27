@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-box" style="max-width: 450px; margin: 50px auto; padding: 40px;">
+    
+    <h1 style="color: #2563eb;">🔑 Inicia Sesión</h1>
+    <p style="color: #475569; margin-bottom: 25px;">
+        Ingresa tus credenciales para acceder a la plataforma web.
+    </p>
+    
+    <form method="post" style="padding: 10px 0; text-align: left;">
+        {% csrf_token %}
+        
+        {% if form.errors %}
+            <div style="color: #ef4444; margin-bottom: 15px; padding: 10px; border: 1px solid #ef4444; background: #fee2e2; border-radius: 4px; font-size: 0.95rem;">
+                ❌ Error: Nombre de usuario o contraseña incorrectos. Por favor, verifica tus datos.
+            </div>
+        {% endif %}
+        
+        {% for field in form %}
+            <div style="margin-bottom: 20px; text-align: left;">
+                <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
+                    {% if field.name == 'username' %}
+                        👤 {{ field.label }}
+                    {% elif field.name == 'password' %}
+                        🔒 {{ field.label }}
+                    {% else %}
+                        {{ field.label }}
+                    {% endif %}
+                </label>
+                
+                {{ field.as_widget }}
+                
+                {% for error in field.errors %}
+                    <p style="color: #ef4444; font-size: 0.9rem; margin-top: 5px;">{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endfor %}
+        
+        <button type="submit" class="nav-item" style="width: 100%; 
+                                                       margin-top: 10px; 
+                                                       background: #2563eb; 
+                                                       color: white; 
+                                                       border-color: #2563eb; 
+                                                       cursor: pointer; 
+                                                       font-size: 1.1rem;">
+            ✅ Acceder a la Plataforma
+        </button>
+        
+        <p style="text-align: center; margin-top: 20px; color: #475569; font-size: 0.95rem;">
+            ¿No tienes cuenta? 
+            <a href="{% url 'registro' %}" style="color: #10b981; text-decoration: none; font-weight: bold;">
+                Regístrate aquí. 📝
+            </a>
+        </p>
+    </form>
+</div>
+{% endblock %}

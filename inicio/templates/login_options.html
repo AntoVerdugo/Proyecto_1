@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="content-box">
+    <h1>¡Bienvenido/a a Mi Proyecto!</h1>
+    
+    <p>Para acceder a la plataforma, por favor selecciona una opción.</p>
+    
+    <div style="margin-top: 30px; text-align: center;">
+        <a href="{% url 'login' %}" class="nav-item" style="background: #2563eb; color: white; border-color: #2563eb; display: inline-block; margin: 10px;">
+            ✅ Ya tengo cuenta (Iniciar Sesión)
+        </a>
+        
+        <a href="{% url 'registro' %}" class="nav-item" style="background: #10b981; color: white; border-color: #10b981; display: inline-block; margin: 10px;">
+            📝 No tengo cuenta (Registrarse)
+        </a>
+    </div>
+</div>
+{% endblock %}
