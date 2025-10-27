@@ -1,14 +1,26 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="content-box">
-    <h1>{{ t }}</h1>
-    <p>Tutor asignado</p>
-    <p>Información sobre la asignación de tutoría o de estudiantes a tu cargo.</p>
+<div class="content-box" style="
+    max-width: 750px; 
+    margin: 30px auto; 
+    padding: 40px;
+">
     
-    <div style="margin-top: 30px; padding: 20px; border: 2px solid #2563eb; border-radius: 8px; background: #eff6ff;">
-        <p style="font-size: 1.2rem; font-weight: 500; color: #1e293b;">
+    <h1 style="color: #10b981;">🧑‍🏫 {{ t }}</h1>
+    
+    <div style="margin-top: 30px; 
+                padding: 30px; 
+                border: 2px solid #10b981; 
+                border-radius: 12px; 
+                background: #ecfdf5; /* Fondo verde muy suave */
+                box-shadow: 0 6px 15px rgba(16, 185, 129, 0.2);">
+        
+        <p style="font-size: 1.2rem; font-weight: 500; color: #065f46; text-align: left;">
             {{ info_asignacion|safe }} 
         </p>
+        
+    
     </div>
 </div>
 {% endblock %}

@@ -1,23 +1,42 @@
 {% extends 'base.html' %}
+
 {% block content %}
-<div class="content-box">
-    <h1>{{ p }}</h1>
-    <p>Sección de perfil</p>
-    <p>Gestiona tu información personal y preferencias.</p>
+<div class="content-box" style="
+    max-width: 600px; 
+    margin: 30px auto; 
+    padding: 40px;
+    background: #f4f6f9; /* Fondo ligeramente gris para la tarjeta de perfil */
+">
     
-    <div style="max-width: 400px; margin: 30px auto; padding: 20px; border: 2px solid #e2e8f0; border-radius: 8px; text-align: left; background: #ffffff;">
-        <h2 style="font-size: 1.5rem; color: #1e293b; text-align: center; margin-bottom: 20px;">Tu Información</h2>
+    <h1 style="color: #2563eb;">👤 {{ p }}</h1>
+    
+  
+
+    <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
         
         {% for key, value in datos_perfil.items %}
-            <div style="display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dotted #e2e8f0;">
-                <span style="font-weight: bold; color: #334155;">{{ key }}:</span>
-                <span style="color: #475569; text-align: right;">{{ value|linebreaksbr }}</span>
+            
+            <div style="display: grid; grid-template-columns: 40% 60%; 
+                        padding: 12px 20px; 
+                        /* Fondo alternado para filas */
+                        background: {% if forloop.counter|divisibleby:2 %}#ffffff{% else %}#f8fafc{% endif %};"> 
+                
+                <span style="font-weight: 600; color: #1e293b;">
+                    {{ key }}
+                </span>
+                
+                <span style="color: #475569; font-weight: 400; text-align: left;">
+                    {{ value|linebreaksbr }}
+                </span>
             </div>
         {% endfor %}
         
         {% if datos_perfil.Mensaje %}
-            <p style="color: #ef4444; margin-top: 15px; text-align: center;">{{ datos_perfil.Mensaje }}</p>
+            <p style="color: #ef4444; margin: 15px; text-align: center;">{{ datos_perfil.Mensaje }}</p>
         {% endif %}
     </div>
+    
+
 </div>
+
 {% endblock %}

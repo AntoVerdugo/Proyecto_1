@@ -1,11 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="content-box">
-    <h1>{{ title }}</h1>
-    <p>Bienvenidos a nuestra página web</p>
-    <p>Explora todas las secciones disponibles usando el menú de navegación superior.</p>
-    <!-- Texto de pie con información del creador -->
-    <p class="footer-text">Sitio Web creado por: Antonia Verdugo, Ian Oyarzo y Matias Cisternas.</p>
+
+<div class="content-box" style="
+    background: linear-gradient(135deg, #eff6ff, #ffffff); /* Fondo suave */
+    border: 1px solid #bfdbfe; /* Borde más amigable */
+    padding: 50px;
+    margin-top: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+">
+    <h1 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 10px;">{{ title }}</h1>
+    
+    <p style="color: #1e293b; font-size: 1.3rem; margin-bottom: 30px;">
+        ¡Ya eres parte de LIA, tu guía dentro de la universidad!
+    </p>
+    
+    <div style="text-align: center; font-size: 1.1rem; color: #475569;">
+        <p>✅ Todos los servicios de tutoría y mapa en línea.</p>
+        <p>Explora la sección <a href="{% url 'tutores' %}" style="color: #10b981; font-weight: bold; text-decoration: none;">Tutores</a> para empezar una conversación con tu tutor asignado.</p>
+    </div>
 </div>
+
+<div class="content-box">
+    <p>Explora todas las secciones disponibles usando el menú de navegación superior.</p>
+</div>
+
 {% endblock %}

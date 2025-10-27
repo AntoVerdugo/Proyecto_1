@@ -1,18 +1,49 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="content-box">
-    <h1>¡Bienvenido/a a LIA!</h1>
+
+<div class="content-box" style="
+    max-width: 650px; 
+    margin: 50px auto; 
+    padding: 60px 40px; /* Hacemos la caja más alta */
+    border: none; /* Quitamos el borde plano */
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.15); /* Sombra azul para darle profundidad */
+">
     
-        <p>Para acceder a la plataforma, por favor selecciona una opción.</p>
+    <h1 style="color: #2563eb; font-size: 2.5rem;">👋 ¡Bienvenido/a a LIA!</h1>
     
-    <div style="margin-top: 30px; text-align: center;">
-        <a href="{% url 'login' %}" class="nav-item" style="background: #2563eb; color: white; border-color: #2563eb; display: inline-block; margin: 10px;">
-            ✅ Ya tengo cuenta (Iniciar Sesión)
+    <p style="color: #475569; font-size: 1.2rem; margin-bottom: 40px;">
+        Tu plataforma de apoyo universitario. Selecciona cómo deseas acceder.
+    </p>
+    
+    <div style="margin-top: 30px; text-align: center; display: flex; justify-content: center; gap: 30px;">
+        
+        <a href="{% url 'login' %}" class="nav-item" style="
+            background: linear-gradient(135deg, #2563eb, #1e40af); /* Pequeño gradiente */
+            color: white; 
+            border: none;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4); /* Sombra para el botón */
+            font-size: 1.1rem;
+            padding: 12px 30px; /* Hacemos el botón más grande */
+            transition: transform 0.2s;
+        ">
+            🔑 Ya tengo cuenta (Iniciar Sesión)
         </a>
         
-        <a href="{% url 'registro' %}" class="nav-item" style="background: #10b981; color: white; border-color: #10b981; display: inline-block; margin: 10px;">
-            📝 No tengo cuenta (Registrarse)
+        <a href="{% url 'registro' %}" class="nav-item" style="
+            background: linear-gradient(135deg, #10b981, #059669); /* Pequeño gradiente */
+            color: white; 
+            border: none;
+            box-shadow: 0 4px 10px rgba(16, 185, 129, 0.4); /* Sombra para el botón */
+            font-size: 1.1rem;
+            padding: 12px 30px; 
+            transition: transform 0.2s;
+        ">
+            ✨ No tengo cuenta (Regístrate)
         </a>
     </div>
+    
+    <p class="footer-text" style="margin-top: 40px;">
+        Punto de entrada al sistema de tutorías y mapa interactivo.
+    </p>
 </div>
 {% endblock %}
