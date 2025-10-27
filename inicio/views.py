@@ -1,4 +1,3 @@
-# inicio/views.py
 
 from django.shortcuts import render, redirect 
 from django.http import HttpResponse
@@ -20,7 +19,7 @@ def opciones_inicio_sesion(request):
         
     # Muestra el template que contiene la caja central con los dos botones
     return render(request, 'login_options.html', {
-        'title': '¡Bienvenido/a a Mi Proyecto!',
+        'title': '¡Bienvenido/a a LIA!',
     })
 
 # Vista de Registro (Ruta '/registro/')
@@ -51,6 +50,7 @@ vista_logout = LogoutView.as_view(
     next_page='opciones_inicio_sesion' # Redirige a la caja central después de cerrar sesión
 )
 
+
 # ----------------------------------------------------------------------
 # VISTAS PROTEGIDAS 
 # ----------------------------------------------------------------------
@@ -62,7 +62,6 @@ def bienvenida(request):
         'title': titulo
     }) 
 
-# ... (El resto de las funciones: mapa, tutores, perfil, ya están correctas)
 @login_required 
 def mapa(request):
     nombre_mostrar = request.user.first_name

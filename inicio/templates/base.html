@@ -14,7 +14,8 @@
     <div class="container">
         
         <h1 class="logo">
-            <a href="{% if user.is_authenticated %}{% url 'bienvenida' %}{% else %}{% url 'opciones_inicio_sesion' %}{% endif %}" style="text-decoration:none; color:inherit;">Mi Proyecto</a>
+            <a href="{% if user.is_authenticated %}{% url 'bienvenida' %}{% else %}{% url 'opciones_inicio_sesion' %}{% endif %}" style="text-decoration:none; color:inherit;">LIA</a>
+            <p>Link Inclusivo Academico</p>
         </h1>
         
         <nav class="navigation">
@@ -32,7 +33,20 @@
                 <a href="{% url 'perfil' %}" class="nav-item">👤 Perfil</a>
                 <span class="separator">-</span>
                 
-                <a href="{% url 'logout' %}" class="nav-item" style="background: #ef4444; color: white; border-color: #ef4444;">🚪 Cerrar Sesión</a>
+                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                    {% csrf_token %} 
+                    <button type="submit" class="nav-item" style="
+                        background: #ef4444; 
+                        color: white; 
+                        /* Replicamos el borde exacto que el enlace tenía */
+                        border: 2px solid #ef4444; 
+                        cursor: pointer;
+                        /* El padding y border-radius se heredan de .nav-item */
+                        padding: 10px 20px;
+                    ">
+                        🚪 Cerrar Sesión
+                    </button>
+                </form>
             
             {% else %}
                 {% endif %}
