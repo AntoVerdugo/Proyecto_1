@@ -1,21 +1,37 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
-<!-- ===== CONTENIDO ESPECÍFICO DE LA PÁGINA DEL MAPA ===== -->
-<div class="content-box">
-    <!-- Imagen del mapa -->
-    <img src="{% static 'map.png' %}" alt="Mapa Interactivo" width="80">
-    
-    <!-- Título principal de la página -->
-    <h1>Mapa Interactivo</h1>
-    
-    <!-- Descripción del mapa -->
-    <p>En este mapa interactivo encontrarás diversas ubicaciones de interés.</p>
-    <p>Puedes hacer clic en los marcadores para obtener más información sobre cada lugar.</p>
+<style>
+    .content-box {
+        background: transparent !important;
+        overflow: visible !important;
+        position: relative !important;
+        isolation: isolate !important;
+    }
 
-    <!-- Texto de pie con información del creador -->
-    <p class="footer-text">Sitio Web creado por Antonia Verdugo</p>
+    #map {
+        height: 600px;
+        width: 870px;
+        background-color: #fff !important; /* evita mezcla con fondo del contenedor */
+        z-index: 1;
+    }
+
+    .leaflet-container {
+        background: none !important; /* elimina el patrón de fondo por defecto */
+    }
+</style>
+
+<div class="content-box">
+    <div id="map"></div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([-33.035088792321325, -71.5951881681857], 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    });
+</script>
 {% endblock %}

@@ -7,11 +7,13 @@ def bienvenida(request):
         'title': title
     })
 
-def mapa(request):
+def mapa(request): 
+     
     username = 'Antonia'
     return render(request, 'mapa.html', { 
         'username': username
     })
+
 
 def tutores(request):
     t = "Este es tu tutor asignado"
