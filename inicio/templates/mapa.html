@@ -16,4 +16,38 @@
     <p>Puedes hacer clic en los marcadores para obtener más información sobre cada lugar.</p>
   
 </div>
+<style>
+    .content-box {
+        background: transparent !important;
+        overflow: visible !important;
+        position: relative !important;
+        isolation: isolate !important;
+    }
+
+    #map {
+        height: 600px;
+        width: 870px;
+        background-color: #fff !important; /* evita mezcla con fondo del contenedor */
+        z-index: 1;
+    }
+
+    .leaflet-container {
+        background: none !important; /* elimina el patrón de fondo por defecto */
+    }
+    
+</style>
+
+<div class="content-box">
+    <div id="map"></div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var map = L.map('map').setView([-33.035088792321325, -71.5951881681857], 18);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
+    });
+</script>
 {% endblock %}
