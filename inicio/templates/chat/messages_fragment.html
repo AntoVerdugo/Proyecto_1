@@ -1,0 +1,36 @@
+{% load static %}
+
+{% for mensaje in mensajes %}
+    
+    {% with es_propio=mensaje.autor.id|default:0 == current_user_id %}
+    
+        <div class="message-row" style="display: flex; justify-content: flex-start; margin-bottom: 8px;">
+            
+            <div class="message-bubble" 
+                 style="display: inline-block; 
+                         max-width: 70%; 
+                         padding: 8px 12px; 
+                         border-radius: 18px; 
+                         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+                         
+                         /* 🛑 COLORES ACTUALIZADOS 🛑 */
+                         background-color: {% if es_propio %}#F0F0F0{% else %}#E0F7FA{% endif %}; 
+                         color: #333;">
+                
+                <strong style="font-size: 0.85em; display: block; margin-bottom: 3px; 
+                                color: {% if es_propio %}#555{% else %}#00AEEF{% endif %};">
+                    {% if es_propio %}Tú{% else %}{{ mensaje.autor.username|default:"Usuario Desconocido" }}{% endif %}
+                </strong>
+                
+                <span style="font-size: 1em;">{{ mensaje.contenido }}</span>
+                
+                <small style="display: block; text-align: right; margin-top: 5px; font-size: 0.7em; 
+                              opacity: 0.7; color: #555;">
+                    {{ mensaje.timestamp|date:"H:i" }}
+                </small>
+            </div>
+            
+        </div>
+        
+    {% endwith %}
+{% endfor %}

@@ -1,0 +1,36 @@
+{% extends "base_chat.html" %}
+{% load static %}
+{% block content %}
+<div style="margin-bottom: 20px; text-align: left;">
+    <a href="{% url 'inicio:bienvenida' %}" class="btn btn-success">
+        ← Volver 
+    </a>
+</div>
+<h3>Sala privada: {{ room.estudiante.username }} ↔ {{ room.tutor.username }}</h3>
+<div id="BoxMessage" class="chat-box" 
+    style="height: calc(100vh - 250px); overflow-y: scroll; border: 1px solid #ccc; padding: 15px;">
+    {% for mensaje in mensajes %}
+        <div class="alert {% if mensaje.autor.id == request.user.id %}alert-primary text-end{% else %}alert-success text-start{% endif %}">
+            <strong>
+                {% if mensaje.autor.id == request.user.id %}Tú:{% else %}{{ mensaje.autor.username }}:{% endif %}
+            </strong>
+            {{ mensaje.contenido }}
+            <small class="text-muted d-block" style="font-size: 0.75rem;">
+                {{ mensaje.timestamp|date:"H:i" }}
+            </small>
+        </div>
+    {% endfor %}
+</div>
+<form method="post" action="{% url 'inicio:enviar_mensaje' room.id %}" class="mt-3">
+    {% csrf_token %}
+    <div class="input-group">
+        <input type="text" name="contenido" class="form-control" placeholder="Escribe tu mensaje..." required>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+</form>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+    const room_id = {{ room.id }}; 
+</script>
+<script src="{% static 'js/chat_polling.js' %}"></script>
+{% endblock content %}
