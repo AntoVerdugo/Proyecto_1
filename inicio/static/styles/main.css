@@ -7,14 +7,54 @@
     box-sizing: border-box; /* Hace que padding y border se incluyan en el width/height */
 }
 
+
+
+/* ===== COLORES UNIVERSITARIOS Y TEMA MEJORADO (VARIABLES GLOBALES) ===== */
+:root {
+    /* Paleta de la Universidad: Azul, Rojo, Amarillo/Oro */
+    --color-uni-blue: #2563eb;  /* Azul (Ya presente) */
+    --color-uni-red: #D93644;   /* Rojo vibrante para destacar */
+    --color-uni-yellow: #FFC72C; /* Amarillo/Oro para acentos */
+}
+
+/* Estilo para Títulos Coloridos que usaremos en las nuevas secciones. */
+.uni-title {
+    /* Creamos un degradado con los colores azul y rojo de la universidad */
+    background: linear-gradient(90deg, var(--color-uni-blue), var(--color-uni-red));
+    /* Recortamos el fondo para que solo se aplique al texto */
+    -webkit-background-clip: text;
+    /* Hacemos el texto transparente para que se vea el degradado */
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para potenciar */
+    font-weight: 800; /* Extra bold para máximo impacto */
+}
+
+
+
+/* Estilo específico para la mascota LIA, la hacemos más grande y con una ligera animación positiva */
+.lia-mascot {
+    display: block;
+    max-width: 200px; /* Tamaño destacado */
+    height: auto;
+    margin: 0 auto 30px; /* Centrado y espacio abajo */
+    transition: transform 0.5s ease; /* Transición suave para el efecto hover */
+}
+
+.lia-mascot:hover {
+    transform: scale(1.05) rotate(3deg); /* Efecto positivo y amigable al pasar el mouse */
+}
+
 /* Estilos generales del cuerpo de la página */
 body {
-    background: #f8fafc;  /* Color de fondo gris muy claro */
+    background: #c6e0fef0;  /* Color de fondo gris muy claro */
     color: #334155;       /* Color del texto gris oscuro */
     font-family: 'Arial', sans-serif; /* Fuente principal */
     line-height: 1.6;     /* Espaciado entre líneas para mejor legibilidad */
     min-height: 100vh;    /* Altura mínima de toda la ventana */
 }
+
 
 /* ===== CONTENEDOR PRINCIPAL ===== */
 
@@ -83,11 +123,19 @@ body {
     padding: 0 5px;   /* Espacio a los lados del guión */
 }
 
-/* ===== CONTENIDO PRINCIPAL ===== */
 
-/* Área principal donde va el contenido de cada página */
+
+/* ===== CONTENIDO PRINCIPAL: APLICAMOS LA IMAGEN DE FONDO AQUÍ ===== */
 .main {
-    padding: 40px 0;  /* Espacio arriba y abajo del contenido */
+    background-image: linear-gradient(rgba(248, 250, 252, 0.299), rgba(248, 250, 252, 0)), 
+                      url('/static/inicio/pie.png');
+    
+    background-size: 100% auto; /* FIX: Asegura que el ancho sea 100% y la altura se adapte completamente */
+    background-position: center top; /* CENTRADO horizontalmente */
+    background-repeat: no-repeat;
+    
+    padding: 40px 0;
+    /* Eliminamos min-height: 800px; para que el contenedor fluya con el contenido y no cause el achicamiento */
 }
 
 /* ===== CAJAS DE CONTENIDO ===== */

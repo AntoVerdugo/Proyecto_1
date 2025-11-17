@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %} 
 
 {% block content %}
 
@@ -9,20 +10,65 @@
     margin-top: 30px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 ">
-    <h1 style="color: #2563eb; font-size: 2.5rem; margin-bottom: 10px;">{{ title }}</h1>
+    <img src="{% static 'lia_mascot.png' %}" alt="Mascota LIA: Tu Asistente Universitario" class="lia-mascot">
+
+    <h1 class="uni-title" style="font-size: 2rem; margin-bottom: 30px; text-align: center;">{{ title }}</h1>
     
     <p style="color: #1e293b; font-size: 1.3rem; margin-bottom: 30px;">
-        ¡Ya eres parte de LIA, tu guía dentro de la universidad!
+        ¡Ya eres parte de <strong style="color: var(--color-uni-red);">LIA</strong>, tu guía dentro de la universidad!<br>
+        Tu herramienta esencial desarrollada por un equipo de Ingeniería de nuestra querida USM.
     </p>
     
     <div style="text-align: center; font-size: 1.1rem; color: #475569;">
-        <p>✅ Todos los servicios de tutoría y mapa en línea.</p>
-        <p>Explora la sección <a href="{% url 'tutores' %}" style="color: #10b981; font-weight: bold; text-decoration: none;">Tutores</a> para empezar una conversación con tu tutor asignado.</p>
+        <p>
+            <strong style="color: var(--color-uni-blue);">✅ Te asistimos en todos los servicios de tutoría y mapa interactivo en línea.</strong>
+        </p>
+        <p>
+            Comienza a usar la plataforma explorando la sección de
+            <a href="{% url 'tutores' %}" style="color: var(--color-uni-red); font-weight: bold;">Tutores</a>, <br>
+            o revisa las ubicaciones clave de nuestra universidad en nuestro <a href="{% url 'mapa' %}"style="color: #FF9933; font-weight: bold;">Mapa Interactivo</a>.
+        </p>
     </div>
 </div>
 
-<div class="content-box">
-    <p>Explora todas las secciones disponibles usando el menú de navegación superior.</p>
+<div class="content-box" style="display: flex; flex-wrap: wrap; justify-content: space-around; gap: 20px;">
+    
+    <div style="flex: 1; min-width: 300px; padding: 15px;">
+        <h1 class="uni-title" style="font-size: 2rem; margin-bottom: 20px; text-align: center;">¿Quiénes somos?</h1>
+        <p style="text-align: left; margin-bottom: 15px; color: #334155;">
+            Somos un equipo de <strong>tres estudiantes de Ingeniería Civil Informática</strong>, comprometidos con derribar las barreras invisibles que enfrentan día a día los estudiantes dentro del espectro autista (CEA). Identificamos que la información dispersa, la sobrecarga sensorial, la desorientación espacial y la falta de apoyo oportuno generan obstáculos que afectan mucho más que el rendimiento académico: afectan la calidad de vida.
+        </p>
+        <p style="text-align: left; color: #334155;">
+            Por eso, creamos una plataforma que integra accesibilidad, claridad y acompañamiento humano para que cada estudiante CEA pueda vivir su vida universitaria con mayor autonomía, seguridad y bienestar.
+            <strong>Somos un puente entre la comunidad, la tecnología y la verdadera inclusión. </strong>.
+        </p> 
+       <p style="text-align: left; color: #334155;">
+            <strong>Nuestro equipo se integra por:</strong><br>
+            <span style="color: var(--color-uni-red); font-weight: bold;">— Antonia Verdugo</span><br>
+            <strong style="color: #FF9933; font-weight: bold;">— Matías Cisternas</strong><br>            
+            <span style="color: var(--color-uni-blue); font-weight: bold;">— Ian Oyarzo</span>
+        </p>
+    </div>
+
+    <div style="width: 2px; background-color: #e2e8f0; margin: 15px 0; display: none;"></div>
+
+    <div style="flex: 1; min-width: 300px; padding: 15px;">
+        <h1 class="uni-title" style="font-size: 2rem; margin-bottom: 20px; text-align: center;">Nuestra Misión</h1>
+        <p style="text-align: left; margin-bottom: 15px; color: #334155;">
+            Nuestra misión es <strong>transformar la experiencia universitaria de los estudiantes con condición del espectro autista</strong>, ofreciendo herramientas que reduzcan la ansiedad, mejoren la orientación dentro del campus y brinden apoyo académico, socioemocional e institucional confiable.
+        </p>
+        <p style="text-align: left; color: #334155;">
+            Queremos  <strong style="color: var(--color-uni-red);">llevar a la práctica lo que dicta la Ley TEA:</strong> una educación inclusiva, accesible y libre de discriminación.
+            Para lograrlo, integramos dos pilares fundamentales:<br>
+             - Un  <strong style="color: var(--color-uni-blue); font-weight: bold;"> mapa interactivo inclusivo </strong>, claro y amigable, que entrega autonomía para moverse por el campus y encontrar espacios seguros.<br>
+             - Una <strong style="color: var(--color-uni-blue); font-weight: bold;"> red de tutores capacitados </strong>, que ofrecen acompañamiento humano desde lo académico hasta lo emocional.
+        </p>
+        <p style="text-align: left; margin-bottom: 15px; color: #334155;">
+            Nuestro propósito es simple pero profundo: que ningún estudiante enfrente la universidad en soledad.
+            <strong style="color: #FF9933; font-weight: bold;">Queremos construir un entorno donde cada estudiante pueda sentirse comprendido, acompañado y capaz.</strong>
+        </p>
+    </div>
+
 </div>
 
 {% endblock %}

@@ -20,7 +20,6 @@
 
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
 
-   
 
     <style>
 
@@ -28,7 +27,7 @@
 
             position: fixed; /* Posición fija */
 
-            top: 0px;       /* Distancia desde arriba */
+            top: -50px;       /* Distancia desde arriba */
 
             left: 80px;      /* Distancia desde la izquierda */
 
@@ -38,7 +37,32 @@
 
         .logo-fijo img {
 
-            height: 200px; /* Tamaño del logo */
+            height: 300px; /* Tamaño del logo */
+
+            width: auto;
+
+            display: block;
+
+        }
+    </style>
+
+    <style>
+
+        .lia-header-mascot {
+
+            position: fixed; 
+
+            top: 20px;       /* Distancia desde arriba */
+
+            right: 100px;      /* Distancia desde la derecha */
+
+            z-index: 1000;   /* Asegura que esté sobre la barra de navegación */
+
+        }
+
+        .lia-header-mascot img {
+
+            height: 160px; /* Tamaño */
 
             width: auto;
 
@@ -52,29 +76,31 @@
 
 <body>
 
-   
+
 
 <div class="logo-fijo">
-
     <img src="{% static 'usm.png' %}" alt="Logo USM">
+    
 
 </div>
 
-   
+<div class="lia-header-mascot">
+    <img src="{% static 'lia2.png' %}" alt="Mascota LIA" class="lia-header-mascot">
+</div>
 
 <header class="header">
-
+    
     <div class="container">
 
        
 
         <h1 class="logo">
 
-            <a href="{% if user.is_authenticated %}{% url 'bienvenida' %}{% else %}{% url 'opciones_inicio_sesion' %}{% endif %}" style="text-decoration:none; color:inherit;">LIA</a>
+            <a class="uni-title" style="font-size: 3rem; margin-bottom: 40px; text-align: center;">LIA</a>
 
-             <p style="color: #1e293b; font-size: 1.1rem; margin-bottom: 30px;">
+             <p style="color: #FF9933; font-weight: bold;">
 
-                Link Inclusivo Academico
+                Link Inclusivo Académico
 
             </p>
 
@@ -145,7 +171,7 @@
                 {% endif %}
 
         </nav>
-
+        
     </div>
 
 </header>
@@ -162,8 +188,8 @@
 
     </div>
 
+   
 </main>
-
 
 
 </body>

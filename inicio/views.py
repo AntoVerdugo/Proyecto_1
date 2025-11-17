@@ -77,8 +77,8 @@ def mapa(request):
 
 @login_required 
 def tutores(request):
-    t = "Información de Asignación"
-    info_asignacion = 'No se encontró información de asignación.'
+    t = "Información de Tutores"
+    info_asignacion = 'No se encontraron tutores disponibles'
     
     try:
         perfil = request.user.perfil
@@ -88,7 +88,7 @@ def tutores(request):
                 nombre_tutor = usuario_tutor.get_full_name()
                 info_asignacion = f'Tu tutor/a asignado/a es: {nombre_tutor}. Rol: {perfil.tutor.rol_universitario}. Contacto: {usuario_tutor.email}.'
             else:
-                info_asignacion = 'Aún no tienes un tutor/a asignado/a. El departamento de inclusión lo hará pronto.'
+                info_asignacion = 'Aún no tienes un tutor/a asignado/a. Explora los tutores disponibles.'
         elif perfil.rol == 'TUTOR':
             estudiantes = perfil.estudiantes_asignados.all() 
             if estudiantes.exists():
