@@ -19,7 +19,6 @@
         
         <div style="display: grid; 
                     grid-template-columns: 1fr 1fr; 
-<<<<<<< HEAD
                     gap: 30px 20px; 
                     padding: 20px 0;">
             
@@ -29,10 +28,6 @@
             </div>
 
 
-=======
-                    gap: 30px 20px; /* Más espacio entre filas y columnas */
-                    padding: 20px 0;">      
->>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
             {% for field in formulario %}
                 
                 {% if field.name == 'password1' %}
@@ -47,7 +42,6 @@
                     
                     
                     <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
-<<<<<<< HEAD
                         {% if field.name == 'username' %}👤 Nombre de Usuario
                         {% elif field.name == 'email' %}📧 Correo Electrónico
                         {% elif field.name == 'first_name' %}✨ Nombres
@@ -61,30 +55,6 @@
                         {% elif field.name == 'password1' %}🔒 Contraseña
                         {% elif field.name == 'password2' %}🔒 Confirmar Contraseña
                         {% else %}{{ field.label }}
-=======
-                        {% if field.name == 'username' %}
-                            👤 Nombre de Usuario
-                        {% elif field.name == 'email' %}
-                            📧 Correo Electrónico
-                        {% elif field.name == 'first_name' %}
-                            ✨ Nombres
-                        {% elif field.name == 'last_name' %}
-                            ✨ Apellidos
-                        {% elif field.name == 'rol_universitario' %}
-                            🆔 Rol Universitario
-                        {% elif field.name == 'rol' %}
-                            🎓 Rol en el Proyecto
-                        {% elif field.name == 'nombre_social' %}
-                            💖 Nombre Social
-                        {% elif field.name == 'edad' %}
-                            🎂 Edad
-                        {% elif field.name == 'carrera' %}
-                            📚 Carrera
-                        {% elif field.name == 'año_estudio' %}
-                            📅 Año de Estudio
-                        {% else %}
-                            {{ field.label }}
->>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
                         {% endif %}
                         
                         {% if field.field.required %} <span style="color: #ef4444;">*</span>{% endif %}

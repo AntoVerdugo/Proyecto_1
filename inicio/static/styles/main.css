@@ -1,242 +1,225 @@
-/* ===== RESET Y CONFIGURACIÓN GENERAL ===== */
 
-/* Reset básico para eliminar márgenes y paddings por defecto del navegador */
+
+/* Reset básico para eliminar márgenes por defecto del navegador */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Hace que padding y border se incluyan en el width/height */
+    box-sizing: border-box; 
 }
 
 
 
-/* ===== COLORES UNIVERSITARIOS Y TEMA MEJORADO (VARIABLES GLOBALES) ===== */
 :root {
-    /* Paleta de la Universidad: Azul, Rojo, Amarillo/Oro */
-    --color-uni-blue: #2563eb;  /* Azul (Ya presente) */
-    --color-uni-red: #D93644;   /* Rojo vibrante para destacar */
-    --color-uni-yellow: #FFC72C; /* Amarillo/Oro para acentos */
+    --color-uni-blue: #2563eb;  
+    --color-uni-red: #D93644;   
+    --color-uni-yellow: #FFC72C; 
 }
 
-/* Estilo para Títulos Coloridos que usaremos en las nuevas secciones. */
+
 .uni-title {
-    /* Creamos un degradado con los colores azul y rojo de la universidad */
+    
     background: linear-gradient(90deg, var(--color-uni-blue), var(--color-uni-red));
-    /* Recortamos el fondo para que solo se aplique al texto */
     -webkit-background-clip: text;
-    /* Hacemos el texto transparente para que se vea el degradado */
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    color: transparent; /* Fallback */
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para potenciar */
-    font-weight: 800; /* Extra bold para máximo impacto */
+    color: transparent; 
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); 
+    font-weight: 800; 
 }
 
 
 
-/* Estilo específico para la mascota LIA, la hacemos más grande y con una ligera animación positiva */
 .lia-mascot {
     display: block;
-    max-width: 200px; /* Tamaño destacado */
+    max-width: 200px;
     height: auto;
-    margin: 0 auto 30px; /* Centrado y espacio abajo */
-    transition: transform 0.5s ease; /* Transición suave para el efecto hover */
+    margin: 0 auto 30px;
+    transition: transform 0.5s ease; 
 }
 
 .lia-mascot:hover {
-    transform: scale(1.05) rotate(3deg); /* Efecto positivo y amigable al pasar el mouse */
+    transform: scale(1.05) rotate(3deg);
 }
 
-/* Estilos generales del cuerpo de la página */
 body {
-    background: #c6e0fef0;  /* Color de fondo gris muy claro */
-    color: #334155;       /* Color del texto gris oscuro */
-    font-family: 'Arial', sans-serif; /* Fuente principal */
-    line-height: 1.6;     /* Espaciado entre líneas para mejor legibilidad */
-    min-height: 100vh;    /* Altura mínima de toda la ventana */
+    background: #c6e0fef0;  
+    color: #334155;      
+    font-family: 'Arial', sans-serif; 
+    line-height: 1.6;   
+    min-height: 100vh;   
 }
 
 
-/* ===== CONTENEDOR PRINCIPAL ===== */
 
-/* Contenedor que centra y limita el ancho del contenido */
 .container {
-    max-width: 1000px;    /* Ancho máximo en pantallas grandes */
-    margin: auto;       /* Centra horizontalmente */
-    padding: 20px;      /* Espacio a los lados en móviles */
-}
+    max-width: 1000px;    
+    margin: auto;      
+    padding: 20px;      
 
-/* ===== ENCABEZADO Y LOGO ===== */
+
 
 .header {
-    background: #ffffff;      /* Fondo blanco para el header */
-    border-bottom: 2px solid #e2e8f0; /* Línea separadora gris claro */
-    padding: 20px 0;         /* Espacio arriba y abajo */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra sutil para profundidad */
+    background: #ffffff;      
+    border-bottom: 2px solid #e2e8f0; 
+    padding: 20px 0;         
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
-/* Estilos del título/logo principal */
 .logo {
-    color: #2563eb;     /* Color azul vibrante */
-    font-size: 2rem;    /* Tamaño grande para destacar */
-    text-align: center; /* Centrado horizontal */
-    margin-bottom: 15px; /* Espacio debajo del logo */
-    font-weight: bold;  /* Texto en negrita */
+    color: #2563eb;    
+    font-size: 2rem;    
+    text-align: center; 
+    margin-bottom: 15px; 
+    font-weight: bold;  
 }
 
-/* ===== MENÚ DE NAVEGACIÓN ===== */
 
 /* Contenedor de los botones de navegación */
 .navigation {
-    display: flex;           /* Diseño flexible para alinear en fila */
-    justify-content: center; /* Centra los botones horizontalmente */
-    align-items: center;     /* Centra verticalmente */
-    flex-wrap: wrap;        /* Permite que los botones bajen de línea en móviles */
-    gap: 5px;               /* Espacio entre botones y separadores */
-    margin: auto;       /* Centra horizontalmente */
+    display: flex;           
+    justify-content: center; 
+    align-items: center;     
+    flex-wrap: wrap;       
+    gap: 5px;               
+    margin: auto;       
     
 }
 
-/* Estilos de cada botón del menú */
+
 .nav-item {
-    color: #475569;           /* Color de texto gris medio */
-    text-decoration: none;    /* Quita el subrayado de los enlaces */
-    padding: 10px 20px;       /* Espacio interno: 10px arriba/abajo, 20px lados */
-    border: 2px solid #e2e8f0; /* Borde gris claro */
-    border-radius: 8px;       /* Esquinas redondeadas */
-    background: #ffffff;      /* Fondo blanco */
+    color: #475569;           
+    text-decoration: none;  
+    padding: 10px 20px;       
+    border: 2px solid #e2e8f0;
+    border-radius: 8px;   /* Esquinas redondeadas */
+    background: #ffffff;     
     transition: all 0.3s ease; /* Transición suave para efectos hover */
-    font-weight: 500;         /* Grosor de fuente medio */
+    font-weight: 500;       
 }
 
 /* Efectos cuando el usuario pasa el mouse sobre un botón */
 .nav-item:hover {
-    background: #2563eb;  /* Fondo azul al hacer hover */
-    color: white;         /* Texto blanco para contraste */
-    border-color: #2563eb; /* Borde azul para coincidir */
-    transform: translateY(-2px); /* Efecto de elevación (se mueve 2px arriba) */
+    background: #2563eb;  
+    color: white;       
+    border-color: #2563eb; 
+    transform: translateY(-2px); 
 }
 
-/* Estilos de los separadores entre botones (guiones) */
+
 .separator {
-    color: #cbd5e1;  /* Color gris claro para los guiones */
-    font-weight: bold; /* Texto en negrita */
-    padding: 0 5px;   /* Espacio a los lados del guión */
+    color: #cbd5e1;  
+    font-weight: bold; 
+    padding: 0 5px;   
 }
 
 
 
-/* ===== CONTENIDO PRINCIPAL: APLICAMOS LA IMAGEN DE FONDO AQUÍ ===== */
+/* ===== APLICAMOS LA IMAGEN DE FONDO AQUÍ ===== */
 .main {
     background-image: linear-gradient(rgba(248, 250, 252, 0.299), rgba(248, 250, 252, 0)), 
                       url('/static/inicio/pie.png');
     
     background-size: 100% auto; /* FIX: Asegura que el ancho sea 100% y la altura se adapte completamente */
-    background-position: center top; /* CENTRADO horizontalmente */
+    background-position: center top; 
     background-repeat: no-repeat;
     
     padding: 40px 0;
-    /* Eliminamos min-height: 800px; para que el contenedor fluya con el contenido y no cause el achicamiento */
 }
 
-/* ===== CAJAS DE CONTENIDO ===== */
 
-/* Estilo de las cajas que contienen el contenido de cada página */
+
+
 .content-box {
-    background: #ffffff;      /* Fondo blanco */
-    border: 2px solid #e2e8f0; /* Borde gris claro */
-    border-radius: 12px;     /* Esquinas más redondeadas */
-    padding: 40px;           /* Espacio interno generoso */
-    margin: 20px 0;          /* Espacio externo arriba y abajo */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    background: #ffffff;     
+    border: 2px solid #e2e8f0; 
+    border-radius: 12px;     
+    padding: 40px;          
+    margin: 20px 0;          
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
 }
 
-/* ===== TIPOGRAFÍA Y TEXTOS ===== */
 
-/* Estilos para los títulos principales (h1) */
+
+
 h1 {
-    color: #1e293b;        /* Color gris muy oscuro */
-    font-size: 2.2rem;     /* Tamaño grande para títulos */
-    text-align: center;    /* Centrado horizontal */
-    margin-bottom: 20px;   /* Espacio debajo del título */
-    font-weight: 600;      /* Texto semi-negrita */
+    color: #1e293b;        
+    font-size: 2.2rem;     
+    text-align: center;    
+    margin-bottom: 20px;   
+    font-weight: 600;      
 }
 
-/* Estilos para párrafos de texto normales */
 p {
-    color: #475569;        /* Color gris medio */
-    font-size: 1.1rem;     /* Tamaño ligeramente mayor para mejor lectura */
-    line-height: 1.7;      /* Espaciado entre líneas amplio */
-    text-align: center;    /* Texto centrado */
-    margin-bottom: 15px;   /* Espacio entre párrafos */
+    color: #475569;       
+    font-size: 1.1rem;     
+    line-height: 1.7;   
+    text-align: center;  
+    margin-bottom: 15px;   
 }
 
-/* Estilos para imágenes dentro del contenido */
+
 .content-box img {
-    display: block;        /* Hace que la imagen sea un bloque */
-    margin: 0 auto 25px;   /* Centra y añade espacio abajo: 0 arriba, auto lados, 25px abajo */
-    border-radius: 8px;    /* Esquinas redondeadas en imágenes */
-    border: 2px solid #e2e8f0; /* Marco sutil alrededor de la imagen */
+    display: block;        
+    margin: 0 auto 25px;   
+    border-radius: 8px;    
+    border: 2px solid #e2e8f0; ¿
 }
 
-/* Estilos para texto de pie o créditos */
 .footer-text {
-    color: #64748b;        /* Color gris más claro */
-    font-size: 1rem;       /* Tamaño normal (ligeramente menor) */
-    margin-top: 30px;      /* Espacio grande arriba para separar */
-    padding-top: 20px;     /* Espacio interno arriba */
-    border-top: 1px solid #e2e8f0; /* Línea separadora sutil */
-}
+    color: #64748b;        
+    font-size: 1rem;      
+    margin-top: 30px;     
+    padding-top: 20px;     
+    border-top: 1px solid #e2e8f0; 
+
+
 
 /* ===== DISEÑO RESPONSIVE - TABLETS ===== */
-
 /* Estilos que se aplican cuando la pantalla es menor a 768px (tablets) */
 @media (max-width: 768px) {
     .container {
-        padding: 0 15px;  /* Menos espacio a los lados */
-    }
+        padding: 0 15px;  
     
     .logo {
-        font-size: 1.8rem; /* Logo ligeramente más pequeño */
+        font-size: 1.8rem; 
     }
     
     .navigation {
-        gap: 3px;         /* Menos espacio entre botones */
+        gap: 3px;        
     }
     
     .nav-item {
-        padding: 8px 15px; /* Botones más compactos */
-        font-size: 0.9rem; /* Texto más pequeño */
-    }
+        padding: 8px 15px;
+        font-size: 0.9rem; 
     
     .main {
-        padding: 20px 0;  /* Menos espacio alrededor del contenido */
+        padding: 20px 0;  
     }
     
     .content-box {
-        padding: 25px 20px; /* Menos espacio interno en las cajas */
+        padding: 25px 20px; 
     }
     
     h1 {
-        font-size: 1.8rem; /* Títulos más pequeños */
+        font-size: 1.8rem; 
     }
 }
 
-/* ===== DISEÑO RESPONSIVE - MÓVILES ===== */
 
+/* ===== DISEÑO RESPONSIVE - MÓVILES ===== */
 /* Estilos que se aplican cuando la pantalla es menor a 480px (móviles pequeños) */
 @media (max-width: 480px) {
     .navigation {
-        flex-direction: column; /* Botones en columna vertical */
-        gap: 10px;             /* Más espacio entre botones */
+        flex-direction: column;
+        gap: 10px;            
     }
     
-    /* En móviles quitamos los separadores (guiones) */
     .separator {
-        display: none;         /* Oculta los guiones "-" */
+        display: none;         
     }
     
     .nav-item {
-        width: 100%;          /* Botones ocupan todo el ancho */
-        text-align: center;   /* Texto centrado dentro del botón */
+        width: 100%;          
+        text-align: center;  
     }
 }
