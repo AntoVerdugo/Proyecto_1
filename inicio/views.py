@@ -180,11 +180,24 @@ def perfil(request):
     try:
         usuario = request.user
         perfil_usuario = usuario.perfil
+        etiqueta_asociado = 'Asociado'
+        valor_asociado = 'N/A'
         
         if perfil_usuario.tutor:
-            nombre_tutor = perfil_usuario.tutor.user.get_full_name() 
-        else:
-            nombre_tutor = 'N/A'
+            etiqueta_asociado = 'Tutor Asignado'
+            if perfil_usuario.tutor:
+                valor_asociado = perfil_usuario.tutor.user.get_full_name()
+            else:
+                valor_asociado = 'Aún no asignado'
+        elif perfil_usuario.rol == 'TUTOR':
+            estudiantes_asignados = Perfil.objects.filter(tutor=perfil_usuario, rol='ESTUDIANTE')
+            
+            etiqueta_asociado = 'Estudiantes Asignados'
+            if estudiantes_asignados.exists():
+                nombres = [e.user.get_full_name() for e in estudiantes_asignados]
+                valor_asociado = ' | '.join(nombres) 
+            else:
+                valor_asociado = 'Ninguno'
             
         datos_perfil = {
             'Rol Universitario': perfil_usuario.rol_universitario, 
@@ -195,8 +208,8 @@ def perfil(request):
             'Carrera': perfil_usuario.carrera or 'N/A',
             'Año de Estudio': perfil_usuario.año_estudio or 'N/A',
             'Rol en el Proyecto': perfil_usuario.get_rol_display(),
-            'Tutor Asignado': perfil_usuario.tutor.user.get_full_name() if perfil_usuario.tutor else 'N/A'
-        }
+            }
+        datos_perfil[etiqueta_asociado] = valor_asociado
     except Perfil.DoesNotExist:
         datos_perfil = {'Mensaje': 'Error: Los datos de tu perfil no están disponibles.'}
         
