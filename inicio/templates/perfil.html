@@ -8,17 +8,13 @@
     background: #f4f6f9; /* Fondo ligeramente gris para la tarjeta de perfil */
 ">
     
-    <h1 class="uni-title" style="font-size: 2rem; margin-bottom: 30px; text-align: center;">👤 {{ p }}</h1>
+    <h1 class="uni-title-gradient" style="font-size: 2.5rem; margin-bottom: 30px; text-align: center;">👤 {{ p }}</h1>
     
     <div style="border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden;">
         
         {% for key, value in datos_perfil.items %}
             
-            <div style="display: grid; grid-template-columns: 40% 60%; 
-                        padding: 12px 20px; 
-                        /* Fondo alternado para filas */
-                        background: {% if forloop.counter|divisibleby:2 %}#ffffff{% else %}#f8fafc{% endif %};"> 
-                
+    <div style="display: grid; grid-template-columns: 40% 60%; padding: 12px 20px; background-color: {% cycle '#ffffff' '#f8fafc' %};">                  
                 <span style="font-weight: 600; color: #1e293b;">
                     {{ key }}
                 </span>

@@ -2,6 +2,8 @@ from django.urls import path
 from . import views 
 from .views import home, room
 
+app_name = 'inicio'
+
 urlpatterns = [
     # RUTA PRINCIPAL: Mapea '/' a la vista que muestra los botones (Caja Central)
     path('', views.opciones_inicio_sesion, name='opciones_inicio_sesion'), 

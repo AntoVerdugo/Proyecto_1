@@ -41,7 +41,7 @@
                             {% if field.name == 'password1' or field.name == 'password2' %} grid-column: 1 / -1; {% endif %}">
                     
                     
-                    <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
+                    <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #4376c7; font-size: 1rem;">
                         {% if field.name == 'username' %}👤 Nombre de Usuario
                         {% elif field.name == 'email' %}📧 Correo Electrónico
                         {% elif field.name == 'first_name' %}✨ Nombres
@@ -71,7 +71,7 @@
                     {% endif %}
                     
                     {% if field.name == 'password2' %}
-                        <p style="margin-top: 10px; margin-bottom: 5px; color: #1e293b; font-weight: 500;">🔒 Condiciones de Contraseña:</p>
+                        <p style="margin-top: 10px; margin-bottom: 5px; color: #ddab16; font-weight: 500;">🔒 Condiciones de Contraseña:</p>
                         <ul style="list-style-type: none; padding-left: 0; font-size: 0.9rem; color: #475569; margin-top: 5px;">
                             <li>• Su contraseña debe contener al menos 8 caracteres.</li>
                             <li>• Su contraseña no puede ser solo numérica.</li>

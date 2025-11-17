@@ -55,7 +55,7 @@ body {
     max-width: 1000px;    
     margin: auto;      
     padding: 20px;      
-
+}
 
 
 .header {
@@ -162,7 +162,7 @@ p {
     display: block;        
     margin: 0 auto 25px;   
     border-radius: 8px;    
-    border: 2px solid #e2e8f0; ¿
+    border: 2px solid #e2e8f0; 
 }
 
 .footer-text {
@@ -171,7 +171,7 @@ p {
     margin-top: 30px;     
     padding-top: 20px;     
     border-top: 1px solid #e2e8f0; 
-
+}
 
 
 /* ===== DISEÑO RESPONSIVE - TABLETS ===== */
@@ -179,6 +179,7 @@ p {
 @media (max-width: 768px) {
     .container {
         padding: 0 15px;  
+    }
     
     .logo {
         font-size: 1.8rem; 
@@ -191,7 +192,7 @@ p {
     .nav-item {
         padding: 8px 15px;
         font-size: 0.9rem; 
-    
+    }  
     .main {
         padding: 20px 0;  
     }
@@ -212,14 +213,14 @@ p {
     .navigation {
         flex-direction: column;
         gap: 10px;            
-    }
+        }
     
     .separator {
         display: none;         
-    }
+        }
     
     .nav-item {
         width: 100%;          
         text-align: center;  
-    }
+        }
 }

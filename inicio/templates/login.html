@@ -18,7 +18,7 @@
         
         {% for field in form %}
             <div style="margin-bottom: 20px; text-align: left;">
-                <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
+                <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #4a84e2; font-size: 1rem;">
                     {% if field.name == 'username' %}
                         👤 {{ field.label }}
                     {% elif field.name == 'password' %}
