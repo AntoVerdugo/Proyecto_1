@@ -1,41 +1,33 @@
  {% load static %}
-
-
-
 <!DOCTYPE html>
-
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>LIA</title>
-
      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
-
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
     <style>
-
-        .logo-fijo {
-
+    .logo-fijo {
             position: fixed; /* Posición fija */
+<<<<<<< HEAD
 
             top: -50px;       /* Distancia desde arriba */
 
+=======
+            top: 0px;       /* Distancia desde arriba */
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
             left: 80px;      /* Distancia desde la izquierda */
-
             z-index: 1000;   /* Asegura que esté sobre la barra de navegación */
-
         }
-
         .logo-fijo img {
+<<<<<<< HEAD
 
             height: 300px; /* Tamaño del logo */
 
@@ -64,17 +56,16 @@
 
             height: 160px; /* Tamaño */
 
+=======
+            height: 200px; /* Tamaño del logo */
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
             width: auto;
-
             display: block;
-
         }
-
     </style>
-
 </head>
-
 <body>
+<<<<<<< HEAD
 
 
 
@@ -90,11 +81,15 @@
 
 <header class="header">
     
+=======
+<div class="logo-fijo">
+    <img src="{% static 'usm.png' %}" alt="Logo USM">
+</div>
+<header class="header">
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
     <div class="container">
-
-       
-
         <h1 class="logo">
+<<<<<<< HEAD
 
             <a class="uni-title" style="font-size: 3rem; margin-bottom: 40px; text-align: center;">LIA</a>
 
@@ -102,45 +97,34 @@
 
                 Link Inclusivo Académico
 
+=======
+            <a href="{% if user.is_authenticated %}{% url 'inicio:bienvenida' %}{% else %}{% url 'inicio:opciones_inicio_sesion' %}{% endif %}" style="text-decoration:none; color:inherit;">LIA</a>
+             <p style="color: #1e293b; font-size: 1.1rem; margin-bottom: 30px;">
+                Link Inclusivo Academico
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
             </p>
-
-           
-
-        </h1>
-
-       
-
+        </h1>       
         <nav class="navigation">
-
-           
-
             {% if user.is_authenticated %}
 
-                <a href="{% url 'bienvenida' %}" class="nav-item">🏠 Inicio</a>
+                <a href="{% url 'inicio:bienvenida' %}" class="nav-item">🏠 Inicio</a>
 
                 <span class="separator">-</span>
 
-               
-
-                <a href="{% url 'mapa' %}" class="nav-item">🗺️ Mapa</a>
+                <a href="{% url 'inicio:mapa' %}" class="nav-item">🗺️ Mapa</a>
 
                 <span class="separator">-</span>
 
-               
-
-                <a href="{% url 'tutores' %}" class="nav-item">👨‍🏫 Tutores</a>
+                <a href="{% url 'inicio:tutores' %}" class="nav-item">👨‍🏫 Tutores</a>
 
                 <span class="separator">-</span>
 
-               
+               <a href="{% url 'inicio:home' %}" class="nav-item">Chat</a>
+               <span class="separator">-</span>
 
-                <a href="{% url 'perfil' %}" class="nav-item">👤 Perfil</a>
-
+                <a href="{% url 'inicio:perfil' %}" class="nav-item">👤 Perfil</a>
                 <span class="separator">-</span>
-
-               
-
-                <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                <form method="post" action="{% url 'inicio:logout' %}" style="display: inline;">
 
                     {% csrf_token %}
 
@@ -155,29 +139,23 @@
                         cursor: pointer;
 
                         padding: 10px 20px;
-
                     ">
-
                         🚪 Cerrar Sesión
 
                     </button>
 
                 </form>
-
-           
-
             {% else %}
 
                 {% endif %}
 
         </nav>
+<<<<<<< HEAD
         
+=======
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
     </div>
-
 </header>
-
-
-
 <main class="main">
 
     <div class="container">
@@ -185,13 +163,15 @@
         {% block content %}
 
         {% endblock %}
-
     </div>
+<<<<<<< HEAD
 
    
 </main>
 
 
+=======
+</main>
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
 </body>
-
 </html>

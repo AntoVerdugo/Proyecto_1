@@ -1,10 +1,9 @@
-
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
-from .models import Perfil # Importamos nuestro modelo Perfil
+from .models import Perfil 
 
-# Hereda de UserCreationForm para manejar la creación de usuario y seguridad de contraseña.
+
 class FormularioRegistro(UserCreationForm):
     # Campos base de Django que queremos recolectar en el registro
     first_name = forms.CharField(label='Nombres', max_length=30)
@@ -30,7 +29,12 @@ class FormularioRegistro(UserCreationForm):
     )
     edad = forms.IntegerField(label='Edad', min_value=15)
     carrera = forms.CharField(label='Carrera', max_length=100)
-    año_estudio = forms.CharField(label='Año de Estudio', max_length=50)
+    año_estudio = forms.IntegerField(
+    label='Año de Ingreso',
+    min_value=2000,
+    max_value=2100,
+    help_text="Año en que ingresaste a la universidad (ej: 2025)."
+)
 
     class Meta(UserCreationForm.Meta):
         # Aseguramos que los campos base se incluyan en el formulario
@@ -54,6 +58,7 @@ class FormularioRegistro(UserCreationForm):
                 nombre_social=self.cleaned_data["nombre_social"],
                 edad=self.cleaned_data["edad"],
                 carrera=self.cleaned_data["carrera"],
-                año_estudio=self.cleaned_data["año_estudio"]
+                año_estudio=self.cleaned_data["año_estudio"],
+            
             )
         return usuario

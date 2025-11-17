@@ -19,6 +19,7 @@
         
         <div style="display: grid; 
                     grid-template-columns: 1fr 1fr; 
+<<<<<<< HEAD
                     gap: 30px 20px; 
                     padding: 20px 0;">
             
@@ -28,6 +29,10 @@
             </div>
 
 
+=======
+                    gap: 30px 20px; /* Más espacio entre filas y columnas */
+                    padding: 20px 0;">      
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
             {% for field in formulario %}
                 
                 {% if field.name == 'password1' %}
@@ -42,6 +47,7 @@
                     
                     
                     <label for="{{ field.id_for_label }}" style="display: block; font-weight: bold; margin-bottom: 5px; color: #1e293b; font-size: 1rem;">
+<<<<<<< HEAD
                         {% if field.name == 'username' %}👤 Nombre de Usuario
                         {% elif field.name == 'email' %}📧 Correo Electrónico
                         {% elif field.name == 'first_name' %}✨ Nombres
@@ -55,13 +61,35 @@
                         {% elif field.name == 'password1' %}🔒 Contraseña
                         {% elif field.name == 'password2' %}🔒 Confirmar Contraseña
                         {% else %}{{ field.label }}
+=======
+                        {% if field.name == 'username' %}
+                            👤 Nombre de Usuario
+                        {% elif field.name == 'email' %}
+                            📧 Correo Electrónico
+                        {% elif field.name == 'first_name' %}
+                            ✨ Nombres
+                        {% elif field.name == 'last_name' %}
+                            ✨ Apellidos
+                        {% elif field.name == 'rol_universitario' %}
+                            🆔 Rol Universitario
+                        {% elif field.name == 'rol' %}
+                            🎓 Rol en el Proyecto
+                        {% elif field.name == 'nombre_social' %}
+                            💖 Nombre Social
+                        {% elif field.name == 'edad' %}
+                            🎂 Edad
+                        {% elif field.name == 'carrera' %}
+                            📚 Carrera
+                        {% elif field.name == 'año_estudio' %}
+                            📅 Año de Estudio
+                        {% else %}
+                            {{ field.label }}
+>>>>>>> 924202299f8d4469f4948c6a279faf2df5df5ccb
                         {% endif %}
                         
                         {% if field.field.required %} <span style="color: #ef4444;">*</span>{% endif %}
                     </label>
-                    
-                    {{ field.as_widget }}
-                    
+                    {{ field.as_widget}}
                     {% if field.help_text %}
                         <p style="color: #64748b; font-size: 0.85rem; margin-top: 5px; text-align: left; line-height: 1.3;">
                             {% if field.name == 'username' %}Requerido. 150 caracteres o menos. Letras, dígitos y @/./+/-/_ solamente.
@@ -93,7 +121,7 @@
         </button>
         
         <p class="footer-text" style="text-align: center; margin-top: 20px; border-top: none;">
-            ¿Ya tienes cuenta? <a href="{% url 'login' %}" style="color: #2563eb; text-decoration: none; font-weight: bold;">Inicia Sesión aquí.</a>
+            ¿Ya tienes cuenta? <a href="{% url 'inicio:login' %}" style="color: #2563eb; text-decoration: none; font-weight: bold;">Inicia Sesión aquí.</a>
         </p>
     </form>
 </div>
