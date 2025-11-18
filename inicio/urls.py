@@ -1,6 +1,5 @@
 from django.urls import path
 from . import views 
-from .views import home, room
 
 app_name = 'inicio'
 
@@ -19,8 +18,12 @@ urlpatterns = [
     path('mapa/', views.mapa, name='mapa'),
     path('tutores/', views.tutores, name='tutores'),
     path('perfil/', views.perfil, name='perfil'),
-    path('chat_lobby/', home, name='home'),
-    path('room/<int:room_id>/', room, name='room'), 
+    path('chat_lobby/', views.home, name='home'),
+    path('room/<int:room_id>/', views.room, name='room'), 
     path('room/<int:room_id>/send/', views.enviar_mensaje, name='enviar_mensaje'),
     path('room/<int:room_id>/messages/', views.obtener_mensajes_ajax, name='obtener_mensajes_ajax'),
+
+    path('api/markers', views.get_markers, name='get_markers'),
+    path('api/markers/add', views.add_marker, name='add_marker'),
+    path('api/markers/delete/<int:marker_id>/', views.delete_marker, name='delete_marker'),
 ]

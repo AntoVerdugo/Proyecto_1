@@ -1,13 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, JsonResponse
+from django.views.decorators.http import require_http_methods
+import json
 from django.contrib.auth.views import LoginView, LogoutView 
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import login 
 from django.contrib.auth.models import User 
-from .models import Perfil, Room, Mensaje 
+from .models import Perfil, Room, Mensaje, Marker 
 from .forms import FormularioRegistro 
 import random
-import os
 def asignar_tutor(estudiante_perfil):
     if estudiante_perfil.rol != 'ESTUDIANTE':
         return None
@@ -293,3 +294,70 @@ def obtener_mensajes_ajax(request, room_id):
         'mensajes': mensajes_antiguos,
         'current_user_id': request.user.id,
     })
+
+
+
+@require_http_methods(["GET"])
+def get_markers(request):
+    """
+    Devuelve los marcadores guardados en la sesión del usuario.
+    """
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "No autorizado"}, status=401)
+
+    # Obtenemos los marcadores de la base de datos para el usuario actual
+    markers = list(Marker.objects.filter(user=request.user).values('id', 'lat', 'lng', 'popup'))
+    return JsonResponse(markers, safe=False)
+
+@require_http_methods(["POST"])
+def add_marker(request):
+    """
+    Añade un nuevo marcador a la base de datos, asociado al usuario.
+    """
+    if not request.user.is_authenticated:
+        return JsonResponse({"error": "No autorizado"}, status=401)
+
+    try:
+        data = json.loads(request.body)
+        lat = data.get('lat')
+        lng = data.get('lng')
+
+        if lat is None or lng is None:
+            return JsonResponse({"error": "Datos inválidos, 'lat' y 'lng' son requeridos."}, status=400)
+
+        # Creamos y guardamos el nuevo marcador en la base de datos
+        new_marker = Marker.objects.create(
+            user=request.user,
+            lat=lat,
+            lng=lng,
+            popup=data.get('popup', 'Marcador')
+        )
+        
+        # Devolvemos los datos del marcador creado en formato JSON
+        response_data = {
+            "id": new_marker.id,
+            "lat": new_marker.lat,
+            "lng": new_marker.lng,
+            "popup": new_marker.popup
+        }
+        return JsonResponse({"status": "success", "marker": response_data}, status=201)
+
+    except json.JSONDecodeError:
+        return JsonResponse({"error": "Cuerpo de la petición inválido."}, status=400)
+
+@require_http_methods(["DELETE"])
+@login_required
+def delete_marker(request, marker_id):
+    """
+    Elimina un marcador de la base de datos.
+    """
+    try:
+        # Buscamos el marcador por su ID y nos aseguramos de que pertenezca al usuario actual
+        marker = get_object_or_404(Marker, id=marker_id, user=request.user)
+        marker.delete()
+        return JsonResponse({"status": "success", "message": "Marcador eliminado."})
+    except Marker.DoesNotExist:
+        # Esto no debería ocurrir si se usa get_object_or_404, pero es una buena práctica
+        return JsonResponse({"error": "Marcador no encontrado o no tienes permiso para eliminarlo."}, status=404)
+    except Exception as e:
+        return JsonResponse({"error": str(e)}, status=500)
