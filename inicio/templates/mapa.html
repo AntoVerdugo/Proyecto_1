@@ -1,50 +1,284 @@
 {% extends 'base.html' %}
 
-{% load static %}
-
 {% block content %}
-<div class="content-box">
-    <img src="{% static 'map.png' %}" alt="Mapa Interactivo" width="80">
+<div class="content-box" style="
+    max-width: 95%; 
+    margin: 30px auto; 
+    padding: 40px;
+">
+    <h1 class="uni-title">🗺️ Mapa Interactivo</h1>
+    <p>Hola, <strong>{{ username }}</strong>. Haz clic en el mapa para añadir un marcador. Se guardará permanentemente en tu cuenta.</p>
     
-    <!-- Título principal de la página -->
-    <h1 class="uni-title" style="font-size: 2rem; margin-bottom: 30px; text-align: center;">Mapa Interactivo</h1>
-    
-    <p>En este mapa interactivo encontrarás diversas ubicaciones de interés.</p>
-    <p>Puedes hacer clic en los marcadores para obtener más información sobre cada lugar.</p>
-  
+    <div id="map" style="height: 60vh; width: 100%; border-radius: 8px; margin-top: 20px; border: 1px solid #ddd;"></div>
 </div>
+
+
+<div id="add-marker-modal" class="custom-modal-overlay" style="display: none;">
+    <div class="custom-modal-content">
+        <h2 class="uni-title" style="font-size: 1.5rem; margin-bottom: 20px;">Añadir Marcador</h2>
+        <input type="text" id="marker-popup-input" placeholder="Ej: Biblioteca, Casino, etc.">
+        <div class="modal-buttons">
+            <button id="cancel-add-marker" class="modal-btn modal-btn-cancel">Cancelar</button>
+            <button id="save-marker-btn" class="modal-btn modal-btn-confirm">Guardar</button>
+        </div>
+    </div>
+</div>
+
+
+<div id="delete-marker-modal" class="custom-modal-overlay" style="display: none;">
+    <div class="custom-modal-content">
+        <h2 class="uni-title" style="font-size: 1.5rem; margin-bottom: 15px;">¿Confirmar Eliminación?</h2>
+        <p style="color: #475569; margin-bottom: 25px;">Esta acción no se puede deshacer.</p>
+        <div class="modal-buttons">
+            <button id="cancel-delete-marker" class="modal-btn modal-btn-cancel">Cancelar</button>
+            <button id="confirm-delete-btn" class="modal-btn modal-btn-delete">Eliminar</button>
+        </div>
+    </div>
+</div>
+
 <style>
-    .content-box {
-        
-        overflow: visible !important;
-        position: relative !important;
-        isolation: isolate !important;
+  
+    .leaflet-popup-content-wrapper {
+        border-radius: 8px !important;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .leaflet-popup-content {
+        margin: 15px 20px !important;
+        width: auto !important;
+        min-width: 200px; 
+        text-align: center;
     }
 
-    #map {
-        height: 600px;
-        width: 870px;
-        background-color: #beecf7e6 !important; 
-        z-index: 1;
-    }
-
-    .leaflet-container {
-        background: none !important; 
-    }
     
-</style>
+    .marker-popup-text {
+        font-size: 1.2rem; 
+        font-weight: 600;
+        color: #1e293b; 
+        margin-bottom: 15px; 
+    }
 
-<div class="content-box">
-    <div id="map"></div>
+    
+    .delete-marker-btn {
+        background: #ef4444; 
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px; 
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        width: 100%;
+        transition: background-color 0.2s;
+    }
+    .delete-marker-btn:hover {
+        background: #dc2626; 
+    }
+
+    
+    .custom-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 2000; 
+    }
+    .custom-modal-content {
+        background: white;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+    }
+    #marker-popup-input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #cbd5e1;
+        border-radius: 6px;
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+    .modal-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    .modal-btn {
+        flex: 1;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    .modal-btn-cancel {
+        background-color: #e2e8f0;
+        color: #475569;
+    }
+    .modal-btn-cancel:hover { background-color: #cbd5e1; }
+    .modal-btn-confirm {
+        background-color: #2563eb; 
+        color: white;
+    }
+    .modal-btn-confirm:hover { background-color: #1d4ed8; }
+    .modal-btn-delete {
+        background-color: #ef4444; 
+        color: white;
+    }
+    .modal-btn-delete:hover { background-color: #dc2626; }
+</style>
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        var map = L.map('map').setView([-33.035088792321325, -71.5951881681857], 18);
+    document.addEventListener('DOMContentLoaded', function() {
+        const map = L.map('map').setView([-33.03555367848963, -71.59505436249333], 18);
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+        const markersOnMap = {};
+
+        function createPopupContent(markerData) {
+            return `<div class="marker-popup-text">${markerData.popup}</div><button class="delete-marker-btn" data-marker-id="${markerData.id}">Eliminar</button>`;
+        }
+
+        async function loadMarkers() {
+            try {
+                const response = await fetch("{% url 'inicio:get_markers' %}");
+                if (!response.ok) throw new Error(`Error del servidor: ${response.status}`);
+                
+                const markers = await response.json();
+                markers.forEach(markerData => {
+                    const popupContent = createPopupContent(markerData);
+                    const marker = L.marker([markerData.lat, markerData.lng])
+                                     .addTo(map)
+                                     .bindPopup(popupContent);
+                    markersOnMap[markerData.id] = marker;
+                });
+            } catch (error) {
+                console.error("Fallo al cargar marcadores:", error.message);
+            }
+        }
+
+        async function saveMarker(lat, lng, popupText) {
+            const csrfToken = document.querySelector('form[action="{% url "inicio:logout" %}"] [name=csrfmiddlewaretoken]').value;
+
+            try {
+                const response = await fetch("{% url 'inicio:add_marker' %}", {
+                    method: 'POST',
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': csrfToken
+                    },
+                    body: JSON.stringify({ lat, lng, popup: popupText }),
+                });
+                if (!response.ok) throw new Error(`El servidor no pudo guardar el marcador: ${response.status}`);
+                
+                const result = await response.json();
+                return result.marker;
+            } catch (error) {
+                console.error("Fallo al guardar marcador:", error.message);
+                return null;
+            }
+        }
+
+        async function deleteMarker(markerId) {
+            const csrfToken = document.querySelector('form[action="{% url "inicio:logout" %}"] [name=csrfmiddlewaretoken]').value;
+            try {
+                const response = await fetch(`/api/markers/delete/${markerId}/`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRFToken': csrfToken
+                    }
+                });
+                if (!response.ok) throw new Error(`El servidor no pudo eliminar el marcador: ${response.status}`);
+                return true;
+            } catch (error) {
+                console.error("Fallo al eliminar marcador:", error.message);
+                return false;
+            }
+        }
+
+        const addModal = document.getElementById('add-marker-modal');
+        const deleteModal = document.getElementById('delete-marker-modal');
+        const markerInput = document.getElementById('marker-popup-input');
+
+        function showCustomPrompt() {
+            return new Promise((resolve) => {
+                addModal.style.display = 'flex';
+                markerInput.value = 'Mi nuevo lugar';
+                markerInput.focus();
+
+                document.getElementById('save-marker-btn').onclick = () => {
+                    addModal.style.display = 'none';
+                    resolve(markerInput.value);
+                };
+                document.getElementById('cancel-add-marker').onclick = () => {
+                    addModal.style.display = 'none';
+                    resolve(null);
+                };
+            });
+        }
+
+        function showCustomConfirm() {
+            return new Promise((resolve) => {
+                deleteModal.style.display = 'flex';
+
+                document.getElementById('confirm-delete-btn').onclick = () => {
+                    deleteModal.style.display = 'none';
+                    resolve(true);
+                };
+                document.getElementById('cancel-delete-marker').onclick = () => {
+                    deleteModal.style.display = 'none';
+                    resolve(false);
+                };
+            });
+        }
+
+        map.on('click', function(e) {
+            const { lat, lng } = e.latlng;
+            
+            showCustomPrompt().then(popupText => {
+                if (popupText) {
+                    saveMarker(lat, lng, popupText).then(newMarkerData => {
+                        if (newMarkerData) {
+                            const popupContent = createPopupContent(newMarkerData);
+                            const marker = L.marker([lat, lng])
+                                             .addTo(map)
+                                             .bindPopup(popupContent)
+                                             .openPopup();
+                            markersOnMap[newMarkerData.id] = marker;
+                        }
+                    });
+                }
+            });
+        });
+
+        map.on('popupopen', function() {
+            document.querySelector('.delete-marker-btn')?.addEventListener('click', function(e) {
+                const markerId = e.target.dataset.markerId;
+                
+                showCustomConfirm().then(confirmed => {
+                    if (confirmed) {
+                        deleteMarker(markerId).then(success => {
+                            if (success && markersOnMap[markerId]) {
+                                map.removeLayer(markersOnMap[markerId]);
+                                delete markersOnMap[markerId];
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        loadMarkers();
     });
 </script>
 {% endblock %}

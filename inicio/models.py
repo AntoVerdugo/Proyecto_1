@@ -80,3 +80,12 @@ class Mensaje(models.Model):
 
     def __str__(self):
         return f'{self.autor.username}: {self.contenido[:20]}...'
+
+class Marker(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='markers')
+    lat = models.FloatField()
+    lng = models.FloatField()
+    popup = models.CharField(max_length=255, blank=True)
+
+    def __str__(self):
+        return f"Marcador de {self.user.username} en ({self.lat}, {self.lng})"
