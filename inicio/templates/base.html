@@ -1,53 +1,39 @@
- {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIA</title>
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
     <link rel="stylesheet" href="{% static 'styles/main.css' %}">
-
 
     <style>
     .logo-fijo {
-            position: fixed; /* Posición fija */
-
-            top: -50px;       /* Distancia desde arriba */
-
-            left: 80px;      /* Distancia desde la izquierda */
-            z-index: 1000;   /* Asegura que esté sobre la barra de navegación */
+            position: absolute; 
+            top: -50px; 
+            left: 80px; 
+            z-index: 1000;  
         }
         .logo-fijo img {
-
-            height: 300px; /* Tamaño del logo */
-
+            height: 300px; 
             width: auto;
-
             display: block;
-
         }
     </style>
 
     <style>
-
         .lia-header-mascot {
-
-            position: fixed; 
-
-            top: 20px;       /* Distancia desde arriba */
-
-            right: 100px;      /* Distancia desde la derecha */
-
-            z-index: 1000;   /* Asegura que esté sobre la barra de navegación */
-
+            position: absolute; 
+            top: 15px;
+            right: 95px; 
+            z-index: 1000; 
         }
 
         .lia-header-mascot img {
-
-            height: 160px; /* Tamaño */
-
+            height: 130px; 
             width: auto;
             display: block;
         }
@@ -55,12 +41,8 @@
 </head>
 <body>
 
-
-
 <div class="logo-fijo">
     <img src="{% static 'usm.png' %}" alt="Logo USM">
-    
-
 </div>
 
 <div class="lia-header-mascot">
@@ -71,18 +53,15 @@
     
     <div class="container">
         <h1 class="logo">
-
             <a class="uni-title" style="font-size: 3rem; margin-bottom: 40px; text-align: center;">LIA</a>
 
              <p style="color: #FF9933; font-weight: bold;">
-
                 Link Inclusivo Académico
-
-            </p>
-        </h1>       
+             </p>
+        </h1> 
+        
         <nav class="navigation">
             {% if user.is_authenticated %}
-
                 <a href="{% url 'inicio:bienvenida' %}" class="nav-item">🏠 Inicio</a>
 
                 <span class="separator">-</span>
@@ -95,50 +74,44 @@
 
                 <span class="separator">-</span>
 
-               <a href="{% url 'inicio:home' %}" class="nav-item">Chat</a>
+                <a href="{% url 'inicio:home' %}" class="nav-item">Chat</a>
                <span class="separator">-</span>
 
                 <a href="{% url 'inicio:perfil' %}" class="nav-item">👤 Perfil</a>
                 <span class="separator">-</span>
+                
                 <form method="post" action="{% url 'inicio:logout' %}" style="display: inline;">
 
                     {% csrf_token %}
 
                     <button type="submit" class="nav-item" style="
-
                         background: #ef4444;
-
                         color: white;
-
                         border: 2px solid #ef4444;
-
                         cursor: pointer;
-
                         padding: 10px 20px;
                     ">
                         🚪 Cerrar Sesión
-
                     </button>
 
                 </form>
             {% else %}
-
                 {% endif %}
 
         </nav>
         
     </div>
 </header>
+
 <main class="main">
 
     <div class="container">
 
         {% block content %}
-
         {% endblock %}
     </div>
 
-   
+    
 </main>
 
 
